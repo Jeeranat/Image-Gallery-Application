@@ -31,11 +31,25 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET, value = "/images")
     public String provideUploadInfo(Model model, RedirectAttributes redirectAttributes) {
 
+    	
+    	
         List<String> imageIds = imageService.getUploadedImages();        
         model.addAttribute("files", imageIds);     
         return "uploadForm";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/gitauthen")
+    public String provideUploadInfoAuthen(Model model, RedirectAttributes redirectAttributes) {
+    
+        return "redirect:https://github.com/login/oauth/authorize?client_id=ac6eaffd65bc86de1cb7";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/gitauthenSuccess")
+    public String provideUploadInfoAuthenSuccess(Model model, RedirectAttributes redirectAttributes) {
+    
+        return "redirect:/images";
+    }
+    
     @RequestMapping(method = RequestMethod.POST, value = "/images")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
