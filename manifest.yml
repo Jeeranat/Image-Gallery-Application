@@ -1,4 +1,11 @@
 ---
 applications:
 - name: image-gallery-0.1.0
+  memory: 512M 
+  instances: 1
+  host: jeeranat-image-gallery
+  buildpack: java_buildpack
   path: ./build/libs
+  env:
+    JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
+  
